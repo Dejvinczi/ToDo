@@ -43,8 +43,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-
-    def update_password(self, new_password):
-        """Updating password."""
-        self.set_password(new_password)
-        self.save()

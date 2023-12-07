@@ -10,6 +10,7 @@ class UserFactory(factory.django.DjangoModelFactory):
         """User model factory meta."""
         model = User
 
+    name = factory.Sequence(lambda n: f'user{n}')
     email = factory.Sequence(lambda n: f'user{n}@example.com')
     password = factory.Faker('password')
     is_staff = False
@@ -19,5 +20,7 @@ class UserFactory(factory.django.DjangoModelFactory):
 
 class SuperuserFactory(UserFactory):
     """Superuser - User model factory."""
+    name = factory.Sequence(lambda n: f'admin{n}')
+    email = factory.Sequence(lambda n: f'admin{n}@example.com')
     is_staff = True
     is_superuser = True

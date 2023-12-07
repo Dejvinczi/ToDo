@@ -55,15 +55,18 @@ class TestUser:
         # Verify email
         assert db_user.email == email
 
-        new_email = 'newer_user@example.com'
+        new_name = 'new_user'
+        new_email = 'new_user@example.com'
         new_password = 'new_password'
 
+        user.name = new_name
         user.email = new_email
         user.set_password(new_password)
         user.save()
         db_user.refresh_from_db()
 
-        # Verify new email
+        # Verify new properties
+        assert db_user.name == new_name
         assert db_user.email == new_email
         assert db_user.check_password(new_password)
 
@@ -82,15 +85,18 @@ class TestUser:
         # Verify email
         assert db_superuser.email == email
 
-        new_email = 'newer_admin@example.com'
+        new_name = 'new_admin'
+        new_email = 'new_admin@example.com'
         new_password = 'new_password'
 
+        superuser.name = new_name
         superuser.email = new_email
         superuser.set_password(new_password)
         superuser.save()
         db_superuser.refresh_from_db()
 
-        # Verify new email
+        # Verify new properties
+        assert db_superuser.name == new_name
         assert db_superuser.email == new_email
         assert db_superuser.check_password(new_password)
 
