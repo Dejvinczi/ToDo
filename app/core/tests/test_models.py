@@ -4,7 +4,6 @@ Core models tests.
 import pytest
 
 from core.models import User
-
 from .factories.user_factory import (
     UserFactory,
     SuperuserFactory,

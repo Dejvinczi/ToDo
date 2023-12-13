@@ -20,7 +20,8 @@ class UserSerializer(serializers.ModelSerializer):
     """Serializer for the user object."""
     name = serializers.CharField(required=True)
     email = serializers.EmailField(required=True)
-    password = serializers.CharField(required=True, write_only=True)
+    password = serializers.CharField(
+        required=True, min_length=5, write_only=True)
 
     class Meta:
         model = get_user_model()

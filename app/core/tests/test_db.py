@@ -2,6 +2,7 @@
 Tests for application database connection.
 """
 import pytest
+
 from django.db import connection
 
 
