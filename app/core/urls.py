@@ -1,7 +1,7 @@
 """Core urls."""
 from django.urls import path
 
-from . import views
+from .api import views
 
 urlpatterns = [
     # Register new user in system
@@ -9,7 +9,8 @@ urlpatterns = [
 
     # Generate token for user
     path('token', views.CreateTokenPairAPIView.as_view(), name='get_token'),
-    path('token/refresh', views.RefreshTokenAPIView.as_view(), name='refresh_token'),
+    path('token/refresh', views.RefreshTokenAPIView.as_view(),
+         name='refresh_token'),
 
     # Authenticated user
     path('me', views.ManageUserAPIView.as_view(), name='me')

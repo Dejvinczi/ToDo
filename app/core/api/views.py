@@ -1,4 +1,6 @@
-"""Core views."""
+"""
+Core API views.
+"""
 from rest_framework import (
     generics,
     permissions,

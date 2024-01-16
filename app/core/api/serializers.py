@@ -1,6 +1,9 @@
-"""Core serializers."""
+"""
+Core API serializers.
+"""
 from django.contrib.auth import get_user_model
 from django.db.utils import IntegrityError
+from django.utils.translation import gettext as _
 
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -33,7 +36,7 @@ class UserSerializer(serializers.ModelSerializer):
             user = get_user_model().objects.create_user(**validated_data)
         except IntegrityError:
             raise serializers.ValidationError(
-                {'email': 'User with this email already exist.'})
+                {'email': _('User with this email already exist.')})
 
         return user
 

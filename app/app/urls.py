@@ -24,13 +24,14 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
+
+    path('api/', include('core.urls'), name='api-core'),
+    path('api/todo/', include('todo.urls'), name='api-todo'),
+
     path('api/schema/',
          SpectacularAPIView.as_view(),
          name='api-schema'),
     path('api/docs/',
          SpectacularSwaggerView.as_view(url_name='api-schema'),
-         name='api-docs'),
-
-    path('api/', include('core.urls'), name='api-core'),
-    path('api/todo/', include('todo.urls'), name='api-todo')
+         name='api-docs')
 ]

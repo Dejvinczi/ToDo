@@ -3,7 +3,7 @@ Core models tests.
 """
 import pytest
 
-from core.models import User
+from .. import models
 from .factories.user_factory import (
     UserFactory,
     SuperuserFactory,
@@ -18,7 +18,7 @@ class TestUser:
         """Creation user instance test."""
         email = 'user@example.com'
         password = 'userpass'
-        user = User.objects.create_user(email=email, password=password)
+        user = models.User.objects.create_user(email=email, password=password)
 
         # Verify user properties
         assert user.email == email
@@ -30,7 +30,7 @@ class TestUser:
         """"Creation superuser instance test."""
         email = 'admin@example.com'
         password = 'adminpass'
-        superuser = User.objects.create_superuser(
+        superuser = models.User.objects.create_superuser(
             email=email, password=password)
 
         # Verify superuser properties
@@ -43,7 +43,7 @@ class TestUser:
         """Updating user instance test."""
         email = 'user@example.com'
         user = UserFactory(email=email)
-        db_users = User.objects.filter(is_superuser=False)
+        db_users = models.User.objects.filter(is_superuser=False)
 
         # Verify creating user in db
         assert db_users.count() == 1
@@ -73,7 +73,7 @@ class TestUser:
         """Updating superuser instance test."""
         email = 'admin@example.com'
         superuser = SuperuserFactory(email=email)
-        db_superusers = User.objects.filter(is_superuser=True)
+        db_superusers = models.User.objects.filter(is_superuser=True)
 
         # Verify creating superuser in db
         assert db_superusers.count() == 1
@@ -102,7 +102,7 @@ class TestUser:
     def test_delete_user(self):
         """Deleting user instance test."""
         user = UserFactory()
-        db_users = User.objects.filter(is_superuser=False)
+        db_users = models.User.objects.filter(is_superuser=False)
 
         # Verify creating user in db
         assert db_users.count() == 1
@@ -116,7 +116,7 @@ class TestUser:
     def test_delete_superuser(self):
         """Deleting superuser instance test."""
         superuser = SuperuserFactory()
-        db_superusers = User.objects.filter(is_superuser=True)
+        db_superusers = models.User.objects.filter(is_superuser=True)
 
         # Verify creating superuser in db
         assert db_superusers.count() == 1
